@@ -1,0 +1,17 @@
+<nav role="navigation" class="navbar navbar-light" style="background-color: #e3f2fd;">
+	<div class="navbar-brand">PJI Hotel</div>
+	<div class="navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/">Dashboard</a></li>
+			<li><a href="/checkin">Check in</a></li>
+			<li><a href="/">Check out</a></li>
+			<li><a href="/reserve">Reserve a room</a></li>
+			<li><a href="/">Add type room</a></li>
+			<li><a href="/addroom">Add room</a></li>
+			<li><a href="/">Available room</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="/logout">Logout</a></li>
+		</ul>
+	</div>
+</nav>
