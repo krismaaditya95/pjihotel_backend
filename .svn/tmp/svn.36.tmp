@@ -1,0 +1,118 @@
+<%@ include file = "header.jsp" %>
+<%@ include file = "nav.jsp" %>
+
+
+<div class="w3-container" style="margin-left: 200px">
+		<div class="jumbotron text-center">
+			<h3>PJI Hotel - Add Customer</h3>
+		</div>
+
+		<hr>
+		<form class="w3-container w3-card-4 w3-light-grey w3-text-grey w3-margin" method="post">
+			<%-- <c:forEach var="customer" items="${customeredit}"> --%>
+
+			<hr>
+			<div class="col-sm-7">
+				<div class="form-group form-float">
+					<label class="form-label">No Identitas</label>
+					<div class="form-line">
+						<%-- <input name="no_identitas" type="number" class="form-control" value="${customer.noIdentitas}"> --%>
+							<input name="no_identitas" type="number" class="form-control">
+
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-7">
+				<div class="form-group form-float">
+					<label class="form-label">Nama Tamu</label>
+					<div class="form-line">
+						<%-- <input name="nama_customer" type="text" class="form-control" value="${customer.namaCustomer}"> --%>
+							<input name="nama_customer" type="text" class="form-control">
+
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-7">
+				<div class="form-group form-float">
+					<label class="form-label">Nomor telepon</label>
+					<div class="form-line">
+						<%-- <input name="no_telp" type="number" class="form-control" value="${customer.noTelp}"> --%>
+							<input name="no_telp" type="number" class="form-control">
+
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-7">
+				<div class="form-group form-float">
+					<label class="form-label">Email</label>
+					<div class="form-line">
+						<%-- <input name="email" type="email" class="form-control" value="${customer.email}"> --%>
+							<input name="email" type="email" class="form-control">
+
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-7">
+				<div class="form-group form-float">
+					<label class="form-label">Alamat</label>
+					<div class="form-line">
+						<%-- <input name="alamat" type="text" class="form-control" value="${customer.alamat}"> --%>
+							<input name="alamat" type="text" class="form-control">
+
+					</div>
+				</div>
+
+
+				<p class="w3-center">
+					<input type="submit" value="TAMBAH"></input>
+					<a href="customers" type="submit" class="btn btn-danger">Cancel</a>
+				</p>
+			</div>
+
+			<%-- </c:forEach> --%>
+		</form>
+</div>
+		<%-- <script>
+		function myAccFunc1() {
+			var x = document.getElementById("accCheckin");
+			if (x.className.indexOf("w3-show") == -1) {
+				x.className += " w3-show";
+				x.previousElementSibling.className += " w3-green";
+			} else {
+				x.className = x.className.replace(" w3-show", "");
+				x.previousElementSibling.className = x.previousElementSibling.className
+						.replace(" w3-green", "");
+			}
+		}
+		function myAccFunc2() {
+			var x = document.getElementById("accKamar");
+			if (x.className.indexOf("w3-show") == -1) {
+				x.className += " w3-show";
+				x.previousElementSibling.className += " w3-green";
+			} else {
+				x.className = x.className.replace(" w3-show", "");
+				x.previousElementSibling.className = x.previousElementSibling.className
+						.replace(" w3-green", "");
+			}
+		}
+		function myDropFunc() {
+			var x = document.getElementById("demoDrop");
+			if (x.className.indexOf("w3-show") == -1) {
+				x.className += " w3-show";
+				x.previousElementSibling.className += " w3-green";
+			} else {
+				x.className = x.className.replace(" w3-show", "");
+				x.previousElementSibling.className = x.previousElementSibling.className
+						.replace(" w3-green", "");
+			}
+		}
+	</script> --%>
+
+
+		<%-- <script src="/static/js/jquery-1.11.1.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+</body>
+</html> --%>
+
+<%@ include file = "footer.jsp" %>

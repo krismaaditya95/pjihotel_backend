@@ -1,0 +1,322 @@
+package com.mini.project.hotel.model;
+
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.JsonNode;
+
+//@Entity(name = "Transaksi")
+@Entity
+@Table(name = "transaksi")
+public class Transaksi implements Serializable{
+	
+	// -- Primary Key --------------------------
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idTransaksi;
+	// -----------------------------------------
+	
+	// -- Foreign Key id_customer --------------
+	@Column(nullable = false, insertable = false, updatable = false)
+	private int idCustomer;
+	
+//	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne
+	@JoinColumn(name = "idCustomer", nullable = false)
+//	@JsonIgnore
+	private Customer customer;
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
+//	JsonNode customerDetails;
+	// -----------------------------------------
+	
+	// -- Foreign Key id_kamar -----------------
+	@Column(nullable = false, insertable = false, updatable = false)
+	private int idKamar;
+	
+//	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne
+	@JoinColumn(name = "idKamar", nullable = false)
+//	@JsonIgnore
+	private Kamar kamar;
+	
+	public Kamar getKamar() {
+		return kamar;
+	}
+
+	public void setKamar(Kamar kamar) {
+		this.kamar = kamar;
+	}
+	// -----------------------------------------
+
+	// Tipe Date
+	@Column(name = "check_in_date", nullable = false)
+	private Date checkInDate;
+
+	@Column(name = "check_in_time", nullable = false)
+	private Date checkInTime;
+	
+	@Column(name = "check_out_date", nullable = false)
+	private Date checkOutDate;
+	
+	@Column(name = "check_out_time", nullable = false)
+	private Date checkOutTime;
+	
+	// -- Foreign Key id_status_check -----------------
+//	@Column(name = "id_status_check", nullable = false)
+	@Column(nullable = false, insertable = false, updatable = false)
+	private int idStatusCheck;
+	
+//	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne
+	@JoinColumn(name = "idStatusCheck", nullable = false)
+//	@JsonIgnore
+	private StatusCheck statusCheck;
+	
+	public StatusCheck getStatusCheck() {
+		return statusCheck;
+	}
+
+	public void setStatusCheck(StatusCheck statusCheck) {
+		this.statusCheck = statusCheck;
+	}
+	// -----------------------------------------------
+
+	@Column(name = "total_harga", nullable = false)
+	private int totalHarga;
+	
+//	public Date getCheck_in_date() {
+//		return check_in_date;
+//	}
+//
+//	public void setCheck_in_date(Date check_in_date) {
+//		this.check_in_date = check_in_date;
+//	}
+//
+//	public Date getCheck_in_time() {
+//		return check_in_time;
+//	}
+//
+//	public void setCheck_in_time(Date check_in_time) {
+//		this.check_in_time = check_in_time;
+//	}
+//
+//	public Date getCheck_out_date() {
+//		return check_out_date;
+//	}
+//
+//	public void setCheck_out_date(Date check_out_date) {
+//		this.check_out_date = check_out_date;
+//	}
+//
+//	public Date getCheck_out_time() {
+//		return check_out_time;
+//	}
+//
+//	public void setCheck_out_time(Date check_out_time) {
+//		this.check_out_time = check_out_time;
+//	}
+	// ===================================================
+
+	public Transaksi() {
+		
+	}
+	
+	// tanpa total harga
+	public Transaksi(String check_in_date, String check_in_time, String check_out_date, String check_out_time) throws ParseException {
+		
+		DateFormat cid_format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat cod_format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat cit_format = new SimpleDateFormat("HH:mm");
+		DateFormat cot_format = new SimpleDateFormat("HH:mm");
+		
+		Date cid_format_parsed = cid_format.parse(check_in_date);
+		Date cod_format_parsed = cod_format.parse(check_out_date);
+		Date cit_format_parsed = cit_format.parse(check_in_time);
+		Date cot_format_parsed = cot_format.parse(check_out_time);
+		
+		this.checkInDate = cid_format_parsed;
+		this.checkInTime = cit_format_parsed;
+		this.checkOutDate = cod_format_parsed;
+		this.checkOutTime = cot_format_parsed;
+//		this.idStatusCheck = id_status_check;
+		
+//		this.totalHarga = total_harga;
+	}
+
+	public Transaksi(String check_in_date, String check_in_time, String check_out_date, String check_out_time, int total_harga) throws ParseException {
+		
+		DateFormat cid_format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat cod_format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat cit_format = new SimpleDateFormat("HH:mm");
+		DateFormat cot_format = new SimpleDateFormat("HH:mm");
+		
+		Date cid_format_parsed = cid_format.parse(check_in_date);
+		Date cod_format_parsed = cod_format.parse(check_out_date);
+		Date cit_format_parsed = cit_format.parse(check_in_time);
+		Date cot_format_parsed = cot_format.parse(check_out_time);
+		
+		this.checkInDate = cid_format_parsed;
+		this.checkInTime = cit_format_parsed;
+		this.checkOutDate = cod_format_parsed;
+		this.checkOutTime = cot_format_parsed;
+//		this.idStatusCheck = id_status_check;
+		
+		this.totalHarga = total_harga;
+	}
+
+	public Transaksi(String check_in_date, String check_in_time, String check_out_date, String check_out_time, int id_status_check, int total_harga) throws ParseException {
+		
+		DateFormat cid_format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat cod_format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat cit_format = new SimpleDateFormat("HH:mm");
+		DateFormat cot_format = new SimpleDateFormat("HH:mm");
+		
+		Date cid_format_parsed = cid_format.parse(check_in_date);
+		Date cod_format_parsed = cod_format.parse(check_out_date);
+		Date cit_format_parsed = cit_format.parse(check_in_time);
+		Date cot_format_parsed = cot_format.parse(check_out_time);
+		
+//		this.check_in_date = cid_format_parsed;
+//		this.check_in_time = cit_format_parsed;
+//		this.check_out_date = cod_format_parsed;
+//		this.check_out_time = cot_format_parsed;
+//		this.id_status_check = id_status_check;
+//		this.total_harga = total_harga;
+		
+		this.checkInDate = cid_format_parsed;
+		this.checkInTime = cit_format_parsed;
+		this.checkOutDate = cod_format_parsed;
+		this.checkOutTime = cot_format_parsed;
+		this.idStatusCheck = id_status_check;
+		this.totalHarga = total_harga;
+	}
+	
+	public Transaksi(int id_customer, Integer id_kamar, String check_in_date, String check_in_time, String check_out_date, String check_out_time, int id_status_check, int total_harga) throws ParseException {
+		
+//		this.id_customer = id_customer;
+//		this.id_room = id_room;
+		this.idCustomer = id_customer;
+		this.idKamar = id_kamar;
+		
+		DateFormat cid_format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat cod_format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat cit_format = new SimpleDateFormat("HH:mm");
+		DateFormat cot_format = new SimpleDateFormat("HH:mm");
+		
+		Date cid_format_parsed = cid_format.parse(check_in_date);
+		Date cod_format_parsed = cod_format.parse(check_out_date);
+		Date cit_format_parsed = cit_format.parse(check_in_time);
+		Date cot_format_parsed = cot_format.parse(check_out_time);
+		
+//		this.check_in_date = cid_format_parsed;
+//		this.check_in_time = cit_format_parsed;
+//		this.check_out_date = cod_format_parsed;
+//		this.check_out_time = cot_format_parsed;
+//		this.id_status_check = id_status_check;
+//		this.total_harga = total_harga;
+		
+		this.checkInDate = cid_format_parsed;
+		this.checkInTime = cit_format_parsed;
+		this.checkOutDate = cod_format_parsed;
+		this.checkOutTime = cot_format_parsed;
+		this.idStatusCheck = id_status_check;
+		this.totalHarga = total_harga;
+	}
+
+	public Integer getIdTransaksi() {
+		return idTransaksi;
+	}
+
+	public void setIdTransaksi(Integer idTransaksi) {
+		this.idTransaksi = idTransaksi;
+	}
+
+	public int getIdCustomer() {
+		return idCustomer;
+	}
+
+	public void setIdCustomer(int idCustomer) {
+		this.idCustomer = idCustomer;
+	}
+	
+	public int getIdKamar() {
+		return idKamar;
+	}
+
+	public void setIdKamar(int idKamar) {
+		this.idKamar = idKamar;
+	}
+
+
+	public Date getCheckInDate() {
+		return checkInDate;
+	}
+
+	public void setCheckInDate(Date checkInDate) {
+		this.checkInDate = checkInDate;
+	}
+
+	public Date getCheckInTime() {
+		return checkInTime;
+	}
+
+	public void setCheckInTime(Date checkInTime) {
+		this.checkInTime = checkInTime;
+	}
+
+	public Date getCheckOutDate() {
+		return checkOutDate;
+	}
+
+	public void setCheckOutDate(Date checkOutDate) {
+		this.checkOutDate = checkOutDate;
+	}
+
+	public Date getCheckOutTime() {
+		return checkOutTime;
+	}
+
+	public void setCheckOutTime(Date checkOutTime) {
+		this.checkOutTime = checkOutTime;
+	}
+	
+	public int getIdStatusCheck() {
+		return idStatusCheck;
+	}
+
+	public void setIdStatusCheck(int idStatusCheck) {
+		this.idStatusCheck = idStatusCheck;
+	}
+
+	public int getTotalHarga() {
+		return totalHarga;
+	}
+
+	public void setTotalHarga(int totalHarga) {
+		this.totalHarga = totalHarga;
+	}
+}

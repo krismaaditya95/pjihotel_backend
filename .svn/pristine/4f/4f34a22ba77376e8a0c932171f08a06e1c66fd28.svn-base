@@ -1,0 +1,88 @@
+package com.mini.project.hotel.controller;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mini.project.hotel.exception.ResourceNotFoundException;
+// IMPORT model customer.java dan 
+// interface customerrepository
+import com.mini.project.hotel.model.Customer;
+import com.mini.project.hotel.model.Transaksi;
+import com.mini.project.hotel.repository.CustomerRepository;
+import com.mini.project.hotel.services.CustomerService;
+
+@RestController
+@RequestMapping("/pjihotel/api/v1")
+public class CustomerRESTController {
+	@Autowired
+	private CustomerRepository custRepo;
+	
+	@Autowired
+	private CustomerService custServ;
+	
+	@GetMapping("/")
+	public String login() {
+		return "Halaman awal dari rest controller";
+	}
+	
+//	@GetMapping("/getAllCustomers")
+//	public List<Customer> getAllCustomers(){
+//		return custRepo.findAll();
+//	}
+	
+	@GetMapping("/getAllCustomers")
+	public List<Customer> getAllCustomers(){
+		return custServ.getAllCustomers();
+	}
+	
+//	@GetMapping("/getCustomerById/{id_customer}")
+//	public ResponseEntity<Customer> getCustomerById(@PathVariable(value = "id_customer") int id_customer)
+//	throws ResourceNotFoundException{
+//		Customer cust = custRepo.findById(id_customer).orElseThrow(() -> new ResourceNotFoundException("Customer dengan id customer :"+ id_customer + " tidak ditemukan"));
+//		//Customer cust = custRepo.getOne(id_customer);
+//		return ResponseEntity.ok().body(cust);
+//	}
+	
+	@GetMapping("/getCustomerById/{id_customer}")
+	public List<Customer> getCustomerById(@PathVariable(value = "id_customer") Integer id_customer)
+	throws ResourceNotFoundException{
+		return custServ.getCustomerById(id_customer);
+	}
+	
+	@GetMapping("/getCustomerByIds/{id_customer}")
+	public Customer getCustomerByIds(@PathVariable(value = "id_customer") Integer id_customer)
+	throws ResourceNotFoundException{
+		return custServ.getCustomerByIds(id_customer);
+	}
+	
+	// Get customer by id	
+//	@GetMapping("/getCustomerById/{id_customer}")
+//	public ResponseEntity<Customer> getCustomerById(@PathVariable(value = "id_customer") int id_customer)
+//	throws ResourceNotFoundException{
+////		int intidcust = Integer (id_customer);
+//		
+//		Customer customer = custRepo.findById(id_customer).orElseThrow(() -> new ResourceNotFoundException("Customer dengan id : "+ id_customer +" tidak ditemukan"));
+//		return ResponseEntity.ok().body(customer);
+//	}
+	
+//	@PostMapping("/createCustomers")
+//	public Customer createCustomers(@Valid @RequestBody Customer customer) {
+//		return custRepo.save(customer);
+//	}
+	
+	@PostMapping("/createCustomers")
+	public Customer createCustomers(@Valid @RequestBody int no_identitas, String nama_customer, String no_telp, String email, String alamat) {
+		return custServ.createCustomer(no_identitas, nama_customer, no_telp, email, alamat);
+	}
+	
+}

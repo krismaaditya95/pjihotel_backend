@@ -1,0 +1,14 @@
+.invisible-at-first {
+	display: none;
+}
+
+.w3-sidebar{
+	position: fixed;
+	background-color: lightblue;
+}
+
+#navbar{
+	background-color: #252525;
+	position: fixed;
+	
+}

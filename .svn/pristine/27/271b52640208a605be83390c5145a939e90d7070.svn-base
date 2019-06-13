@@ -1,0 +1,311 @@
+package com.mini.project.hotel.model;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity(name = "Transaksi")
+@Table(name = "transaksi")
+public class Transaksi {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public int id_transaksi;
+	
+	//@ManyToOne //(fetch = FetchType.LAZY, optional = false)
+	//@JoinColumn //(name = "nama_customer", referencedColumnName = "nama_customer", nullable = false)
+	//@OnDelete(action = OnDeleteAction.CASCADE)
+	//@JsonIgnore
+	
+	//@Column(nullable = false, insertable = false, updatable = false)
+	//public Integer id_customer;
+	
+
+	@ManyToOne
+	@JoinColumn(name = "id_customer", referencedColumnName = "id_customer")
+	public Customer customer;
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
+	
+//	@Column(nullable = false)
+//	public String nama_cust = customer.getNama_customer();
+	
+	@Column(name = "id_room", nullable = false)
+	public int id_room;
+	
+//	@ManyToOne(optional = false)
+//	public Room room;
+//	
+//	public Room getRoom() {
+//		return room;
+//	}
+//	public void setRoom(Room room) {
+//		this.room = room;
+//	}
+	
+//	TIPE DATE FORMAT
+//	@Column(name = "check_in_date", nullable = false)
+//	DateFormat check_in_date = new SimpleDateFormat("yyyy-MM-dd");
+//	
+//	@Column(name = "check_out_date", nullable = false)
+//	DateFormat check_out_date = new SimpleDateFormat("yyyy-MM-dd");
+//	
+//	@Column(name = "check_in_time", nullable = false)
+//	DateFormat check_in_time = new SimpleDateFormat("HH:mm");
+//	
+//	@Column(name = "check_out_time", nullable = false)
+//	DateFormat check_out_time = new SimpleDateFormat("HH:mm");
+	
+	
+	// TIPE STRING TRUS BARU DICONVERT KE DATE
+//	@Column(name = "check_in_date", nullable = false)
+//	public String check_in_date;
+//	
+//	@Column(name = "check_in_time", nullable = false)
+//	public String check_in_time;
+//	
+//	@Column(name = "check_out_date", nullable = false)
+//	public String check_out_date;
+//	
+//	@Column(name = "check_out_time", nullable = false)
+//	public String check_out_time;
+	
+	// Tipe Date
+	@Column(name = "check_in_date", nullable = false)
+	public Date check_in_date;
+
+	@Column(name = "check_in_time", nullable = false)
+	public Date check_in_time;
+	
+	@Column(name = "check_out_date", nullable = false)
+	public Date check_out_date;
+	
+	@Column(name = "check_out_time", nullable = false)
+	public Date check_out_time;
+	
+	public Date getCheck_in_date() {
+		return check_in_date;
+	}
+
+	public void setCheck_in_date(Date check_in_date) {
+		this.check_in_date = check_in_date;
+	}
+
+	public Date getCheck_in_time() {
+		return check_in_time;
+	}
+
+	public void setCheck_in_time(Date check_in_time) {
+		this.check_in_time = check_in_time;
+	}
+
+	public Date getCheck_out_date() {
+		return check_out_date;
+	}
+
+	public void setCheck_out_date(Date check_out_date) {
+		this.check_out_date = check_out_date;
+	}
+
+	public Date getCheck_out_time() {
+		return check_out_time;
+	}
+
+	public void setCheck_out_time(Date check_out_time) {
+		this.check_out_time = check_out_time;
+	}
+	// ===================================================
+	
+	@Column(name = "id_status_check", nullable = false)
+	public int id_status_check;
+	
+	@Column(name = "total_harga", nullable = false)
+	public int total_harga;
+
+	
+	public Transaksi() {
+		
+	}
+	
+//	public Transaksi(int id_customer, int id_room, DateFormat check_in_date, DateFormat check_in_time,DateFormat check_out_date,DateFormat check_out_time, int id_status_check, int total_harga) {
+//		this.id_customer = id_customer;
+//		this.id_room = id_room;
+//		this.check_in_date = check_in_date;
+//		this.check_in_time = check_in_time;
+//		this.check_out_date = check_out_date;
+//		this.check_out_time = check_out_time;
+//		this.id_status_check = id_status_check;
+//		this.total_harga = total_harga;
+//	}
+	
+	public Transaksi(Customer customer, Integer id_room, String check_in_date, String check_in_time, String check_out_date, String check_out_time, int id_status_check, int total_harga) throws ParseException {
+		
+//		this.id_customer = customer.id_customer;
+//		this.id_customer = customer.getId_customer();
+//		this.id_customer = id_customer;
+		this.id_room = id_room;
+		
+		DateFormat cid_format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat cod_format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat cit_format = new SimpleDateFormat("HH:mm");
+		DateFormat cot_format = new SimpleDateFormat("HH:mm");
+		
+		Date cid_format_parsed = cid_format.parse(check_in_date);
+		Date cod_format_parsed = cod_format.parse(check_out_date);
+		Date cit_format_parsed = cit_format.parse(check_in_time);
+		Date cot_format_parsed = cot_format.parse(check_out_time);
+		
+		this.check_in_date = cid_format_parsed;
+		this.check_in_time = cit_format_parsed;
+		this.check_out_date = cod_format_parsed;
+		this.check_out_time = cot_format_parsed;
+		
+		this.id_status_check = id_status_check;
+		this.total_harga = total_harga;
+	}
+	
+	// Tipe date
+//	public Transaksi(int id_customer, int id_room, Date check_in_date, Date check_in_time, Date check_out_date, Date check_out_time, int id_status_check, int total_harga) {
+//		this.id_customer = id_customer;
+//		this.id_room = id_room;
+//		this.check_in_date = check_in_date;
+//		this.check_in_time = check_in_time;
+//		this.check_out_date = check_out_date;
+//		this.check_out_time = check_out_time;
+//		this.id_status_check = id_status_check;
+//		this.total_harga = total_harga;
+//	}
+	
+	
+	// =============================================
+	public int getId_transaksi() {
+		return id_transaksi;
+	}
+	public void setId_transaksi(int id_transaksi) {
+		this.id_transaksi = id_transaksi;
+	}
+	
+	// =============================================	
+	
+//	public int getId_customer() {
+//		return id_customer;
+//	}
+//	public void setId_customer(Integer id_customer) {
+//		this.id_customer = id_customer;
+//	}
+	
+	// =============================================
+	
+	public int getId_room() {
+		return id_room;
+	}
+	public void setId_room(int id_room) {
+		this.id_room = id_room;
+	}
+	
+	// =============================================
+	
+//	public DateFormat getCheck_in_date() {
+//		return check_in_date;
+//	}
+//	public void setCheck_in_date(DateFormat check_in_date) {
+//		this.check_in_date = check_in_date;
+//	}
+	
+	
+//	public String getCheck_in_date() {
+//		return check_in_date;
+//	}
+//	public void setCheck_in_date(String check_in_date) {
+//		
+//		this.check_in_date = check_in_date;
+//	}
+	
+	// ===================================================
+	
+//	public DateFormat getCheck_in_time() {
+//		return check_in_time;
+//	}
+//	public void setCheck_in_time(DateFormat check_in_time) {
+//		this.check_in_time = check_in_time;
+//	}
+	
+	
+//	public String getCheck_in_time() {
+//		return check_in_time;
+//	}
+//	public void setCheck_in_time(String check_in_time) {
+//		this.check_in_time = check_in_time;
+//	}
+	
+	// ===================================================
+//	public DateFormat getCheck_out_date() {
+//		return check_out_date;
+//	}
+//	public void setCheck_out_date(DateFormat check_out_date) {
+//		this.check_out_date = check_out_date;
+//	}
+	
+	
+//	public String getCheck_out_date() {
+//		return check_out_date;
+//	}
+//	public void setCheck_out_date(String check_out_date) {
+//		this.check_out_date = check_out_date;
+//	}
+	
+	// ====================================================
+//	public DateFormat getCheck_out_time() {
+//		return check_out_time;
+//	}
+//	public void setCheck_out_time(DateFormat check_out_time) {
+//		this.check_out_time = check_out_time;
+//	}
+	
+	
+//	public String getCheck_out_time() {
+//		return check_out_time;
+//	}
+//	public void setCheck_out_time(String check_out_time) {
+//		this.check_out_time = check_out_time;
+//	}
+	
+	// =====================================================
+	
+	public int getId_status_check() {
+		return id_status_check;
+	}
+	public void setId_status_check(int id_status_check) {
+		this.id_status_check = id_status_check;
+	}
+	
+	// ====================================================
+	
+	public int getTotal_harga() {
+		return total_harga;
+	}
+	public void setTotal_harga(int total_harga) {
+		this.total_harga = total_harga;
+	}
+	
+	
+	
+//	public dateFormat check_in_date_time;
+}

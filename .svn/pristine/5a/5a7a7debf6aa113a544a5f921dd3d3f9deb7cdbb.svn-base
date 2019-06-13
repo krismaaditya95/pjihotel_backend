@@ -1,0 +1,6 @@
+package com.mini.project.hotel.model;
+
+public class RoomStatusAvailable {
+	public int id_status;
+	public String status_name;
+}

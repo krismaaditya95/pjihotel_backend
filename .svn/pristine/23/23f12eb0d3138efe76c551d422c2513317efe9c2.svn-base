@@ -1,0 +1,56 @@
+package com.mini.project.hotel.controller;
+
+import java.text.ParseException;
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mini.project.hotel.exception.ResourceNotFoundException;
+import com.mini.project.hotel.model.Kamar;
+import com.mini.project.hotel.model.StatusKamar;
+import com.mini.project.hotel.model.TipeKamar;
+import com.mini.project.hotel.model.Transaksi;
+import com.mini.project.hotel.services.KamarService;
+
+@RestController
+@RequestMapping("/pjihotel/api/v1")
+public class KamarRESTController {
+	
+	@Autowired
+	KamarService kamarServ;
+	
+	// == Kamar ==
+	@GetMapping("/getAllKamar")
+	public List<Kamar> getAllKamar(){
+		return kamarServ.getAllKamar();
+	}
+	
+	@GetMapping("/getAllTipeKamar")
+	public List<TipeKamar> getAllTipeKamar(){
+		return kamarServ.getAllTipeKamar();
+	}
+	
+	@GetMapping("/getAllStatusKamar")
+	public List<StatusKamar> getAllStatusKamar(){
+		return kamarServ.getAllStatusKamar();
+	}	
+	
+	@GetMapping("/getKamarById/{id_kamar}")
+	public Kamar getKamarById(@PathVariable(value = "id_kamar") Integer id_room)
+	throws ResourceNotFoundException{
+		return kamarServ.getKamarByIds(id_room);
+	}
+	
+//	@PostMapping("/addKamar")
+//	public Transaksi createTransaksi(@Valid @RequestParam int idKamar, String noKamar, int idType, int idStatus) throws ParseException {
+//		return kamarServ
+//	}
+}

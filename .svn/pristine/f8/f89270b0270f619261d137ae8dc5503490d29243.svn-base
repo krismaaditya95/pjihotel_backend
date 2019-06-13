@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Check-In / Booking</title>
+  </head>
+  <body>
+    <h4>Check-In / Booking</h4>
+    <form class="transaksiform" method="post">
+      Tamu : <select class="tamuselect" name="id_customer">
+      <option value="1">Aditya</option>
+      </select>
+      <hr>
+      Kamar : <input type="number" name="id_room" placeholder="id_room">
+      <hr>
+      Tanggal Check In : <input type="date" name="check_in_date" placeholder="check_in_date">
+      <hr>
+      Waktu Check in : <input type="time" name="check_in_time" placeholder="check_in_time">
+      <hr>
+      Tanggal Check Out : <input type="date" name="check_out_date" placeholder="check_out_date">
+      <hr>
+      Waktu Check Out : <input type="time" name="check_out_time" placeholder="check_in_date">
+      <hr>
+      Status Check : <input type="number" name="id_status_check" placeholder="status_check">
+      <hr>
+      Total Harga : <input type="number" name="total_harga" placeholder="Total Harga">
+
+      <input type="submit">TAMBAH</input>
+    </form>
+  </body>
+</html>

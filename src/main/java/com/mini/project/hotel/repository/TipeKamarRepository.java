@@ -10,5 +10,7 @@ import com.mini.project.hotel.model.TipeKamar;
 @Repository
 public interface TipeKamarRepository extends JpaRepository<TipeKamar, Integer>{
 	
-	TipeKamar findByIdTipeKamar(Integer id);
+	List<TipeKamar> findByOrderByIdTipeKamar();
+	
+	TipeKamar findByIdTipeKamarOrderByIdTipeKamar(Integer id);
 }

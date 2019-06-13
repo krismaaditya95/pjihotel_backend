@@ -1,0 +1,27 @@
+package com.mini.project.hotel.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mini.project.hotel.model.Customer;
+import com.mini.project.hotel.repository.CustomerRepository;
+
+@Service
+public class CustomerService {
+	@Autowired
+	CustomerRepository custRepo;
+	
+	
+	public List<Customer> getAllCustomers(){
+		List<Customer> customers = custRepo.findAll();
+		return customers;
+	}
+	
+	public Customer createCustomer(int no_identitas, String nama_customer, String no_telp, String email, String alamat) {
+		Customer customer = new Customer(no_identitas, nama_customer, no_telp, email, alamat);
+		Customer newCustomer = custRepo.save(customer);
+		return newCustomer;
+	}
+}

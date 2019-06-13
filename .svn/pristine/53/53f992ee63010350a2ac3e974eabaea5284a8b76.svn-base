@@ -1,0 +1,86 @@
+package com.mini.project.hotel.controller;
+
+import java.util.Date;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.mini.project.hotel.model.Pengguna;
+
+@Controller
+@RequestMapping("/pjihotel")
+public class UserMvcController {
+	
+	
+	@Autowired
+	UserRESTController userREST;
+	
+	@RequestMapping(value = "/login", method= RequestMethod.GET)
+	public String loginPage(ModelMap model) {
+		return "login";
+	}
+	
+	@RequestMapping(value = "/login", method= RequestMethod.POST)
+	public String login(ModelMap model, @RequestParam String username, String userpass, HttpSession session) {
+		Pengguna pengguna = userREST.getUserByUserName(username);
+
+		int idPengguna = pengguna.getUserId();
+		String userName = pengguna.getUserName();
+		String userPass = pengguna.getUserPass();
+		int idUserRole = pengguna.getRole().getIdUserRole();
+		String userRoleName = pengguna.getRole().getRoleName();
+		
+//		for testing
+		Long sessionCreationTime = session.getCreationTime();
+		String sessionId = session.getId();
+		Long lastAccessedTime = session.getLastAccessedTime();
+		
+		Date sessionCreatedDate = new Date(sessionCreationTime * 1000);
+		Date lastAccessedDate = new Date(lastAccessedTime * 1000);
+		
+		
+		if(username.equalsIgnoreCase(userName) && userpass.equalsIgnoreCase(userPass)) {
+			session.setAttribute("idPengguna", idPengguna);
+			session.setAttribute("userName", userName);
+			session.setAttribute("idUserRole", idUserRole);
+			session.setAttribute("userRoleName", userRoleName);
+			
+			// untuk testing
+//			session.setAttribute("sessionCreationTime", sessionCreationTime);
+			session.setAttribute("sessionId", sessionId);
+//			session.setAttribute("lastAccessedTime", lastAccessedTime);
+			
+			session.setAttribute("sessionCreationTime", sessionCreatedDate);
+			session.setAttribute("lastAccessedTime", lastAccessedDate);
+			
+			return "redirect:/pjihotel/transaksi";
+			
+		}else {
+			model.put("error", "Gagal. Username atau password salah!");
+			return "login";
+		}
+		
+		
+	}
+	
+	@RequestMapping(value = "/logout", method= RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.removeAttribute("idPengguna");
+		session.removeAttribute("userName");
+		session.removeAttribute("idUserRole");
+		session.removeAttribute("userRoleName");
+		// untuk testing
+		session.removeAttribute("sessionCreationTime");
+		session.removeAttribute("sessionId");
+		session.removeAttribute("lastAccessedTime");
+		session.invalidate();
+//		userREST.logout();
+		return "redirect:/pjihotel/login";
+	}
+}

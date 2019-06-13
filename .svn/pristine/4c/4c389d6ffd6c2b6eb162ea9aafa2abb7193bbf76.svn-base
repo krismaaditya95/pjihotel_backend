@@ -1,0 +1,51 @@
+package com.mini.project.hotel.model;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "room_type")
+public class RoomType {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_type", nullable = false)
+	public int id_type;
+	
+	@Column(name = "type_name", nullable = false)
+	public String type_name;
+	
+	@Column(name = "harga", nullable = false)
+	public int harga;
+	
+	public RoomType() {
+		
+	}
+	
+	public RoomType(String type_name, int harga) {
+		this.type_name = type_name;
+		this.harga = harga;
+	}
+	
+	//=================================
+	public int getId_type() {
+		return id_type;
+	}
+	public void setId_type(int id_type) {
+		this.id_type = id_type;
+	}
+	//=================================
+	public String getType_name() {
+		return type_name;
+	}
+	public void setType_name(String type_name) {
+		this.type_name = type_name;
+	}
+	//=================================
+	public int getHarga() {
+		return harga;
+	}
+	public void setHarga(int harga) {
+		this.harga = harga;
+	}
+	//=================================
+}

@@ -10,5 +10,7 @@ import com.mini.project.hotel.model.StatusKamar;
 @Repository
 public interface StatusKamarRepository extends JpaRepository<StatusKamar, Integer>{
 	
+//	StatusKamar findByIdStatusKamarOrderByIdStatusKamar(Integer id);
+	
 	StatusKamar findByIdStatusKamar(Integer id);
 }

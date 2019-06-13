@@ -1,0 +1,76 @@
+package com.mini.project.hotel.model;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "customer")
+public class Customer {
+	public int id_customer;
+	public int no_identitas;
+	public String nama_customer;
+	public String no_telp;
+	public String email;
+	public String alamat;
+	
+	public Customer() {
+		
+	}
+	
+	public Customer(int no_identitas, String nama_customer, String no_telp, String email, String alamat) {
+		this.no_identitas = no_identitas;
+		this.nama_customer = nama_customer;
+		this.no_telp = no_telp;
+		this.email = email;
+		this.alamat = alamat;
+	}
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public int getId_customer() {
+		return id_customer;
+	}
+	
+	public void setId_customer(int id_customer) {
+		this.id_customer = id_customer;
+	}
+	
+	@Column(name = "no_identitas", nullable = false)
+	public int getNo_identitas() {
+		return no_identitas;
+	}
+	public void setNo_identitas(int no_identitas) {
+		this.no_identitas = no_identitas;
+	}
+	
+	@Column(name = "nama_customer", nullable = false)
+	public String getNama_customer() {
+		return nama_customer;
+	}
+	public void setNama_customer(String nama_customer) {
+		this.nama_customer = nama_customer;
+	}
+	
+	@Column(name = "no_telp", nullable = false)
+	public String getNo_telp() {
+		return no_telp;
+	}
+	public void setNo_telp(String no_telp) {
+		this.no_telp = no_telp;
+	}
+	
+	@Column(name = "email", nullable = false)
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	@Column(name = "alamat", nullable = false)
+	public String getAlamat() {
+		return alamat;
+	}
+	public void setAlamat(String alamat) {
+		this.alamat = alamat;
+	}
+}

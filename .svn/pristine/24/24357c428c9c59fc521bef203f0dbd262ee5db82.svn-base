@@ -1,0 +1,27 @@
+package com.mini.project.hotel.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+@RequestMapping("/pjihotel")
+public class KamarMvcController {
+	
+	@Autowired
+	KamarRESTController kamarREST;
+	
+	@RequestMapping(value = "/available-room", method=RequestMethod.GET)
+	public String showAvailableRoomPage(ModelMap model) {
+		model.put("kamars", kamarREST.getAllKamar());
+		return "kamar";
+	}
+	
+	@RequestMapping(value = "/add-room", method = RequestMethod.GET)
+	public String showAddRoomPage(ModelMap model) {
+//		model.put()
+		return "add-kamar";
+	}
+}

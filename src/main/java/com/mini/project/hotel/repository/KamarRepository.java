@@ -10,6 +10,8 @@ import com.mini.project.hotel.model.Kamar;
 @Repository
 public interface KamarRepository extends JpaRepository<Kamar, Integer>{
 	
+	List<Kamar> findByOrderByIdKamar();
+	
 	Kamar findByIdKamar(Integer id);
 	
 	Kamar findByNoKamar(String noKamar);

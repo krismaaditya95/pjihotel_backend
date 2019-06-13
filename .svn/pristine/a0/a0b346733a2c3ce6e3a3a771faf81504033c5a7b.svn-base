@@ -1,0 +1,95 @@
+package com.mini.project.hotel.services;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mini.project.hotel.controller.CustomerRESTController;
+import com.mini.project.hotel.controller.TransaksiRESTController;
+import com.mini.project.hotel.model.Customer;
+import com.mini.project.hotel.model.Kamar;
+import com.mini.project.hotel.model.StatusCheck;
+import com.mini.project.hotel.model.Transaksi;
+import com.mini.project.hotel.repository.CustomerRepository;
+import com.mini.project.hotel.repository.KamarRepository;
+import com.mini.project.hotel.repository.StatusCheckRepository;
+import com.mini.project.hotel.repository.TipeKamarRepository;
+import com.mini.project.hotel.repository.TransaksiRepository;
+
+@Service
+public class TransaksiService {
+	@Autowired
+	TransaksiRESTController rest;
+	
+	@Autowired
+	CustomerRESTController custRest;
+	
+	@Autowired
+	TransaksiRepository transaksiRepo;
+	
+	@Autowired
+	CustomerRepository custRepo;
+	
+	@Autowired
+	KamarRepository kamarRepo;
+	
+//	@Autowired
+//	PenggunaRepository userRepo;
+	
+	@Autowired
+	TipeKamarRepository tipeKamarRepo;
+	
+	@Autowired
+	StatusCheckRepository statusCheckRepo;
+	
+	DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+	DateFormat time = new SimpleDateFormat("HH:mm");
+	
+	// pake repo
+	public List<Transaksi> getAllTransaksi(){
+		List<Transaksi> transaksis = transaksiRepo.findAll();
+		
+//		transaksis.
+		
+		return transaksis;
+	}
+	
+	
+
+	
+	public Transaksi createTransaksi(int idCustomer, int idKamar, String check_in_date, String check_in_time, String check_out_date, String check_out_time, int idStatusCheck, int totalHarga) throws ParseException {
+		//Transaksi newtransaksi = new Transaksi(id_customer, id_room, check_in_date, check_in_time, check_out_date, check_out_time, id_status_check, total_harga);
+		//Transaksi transaksi = new Transaksi(check_in_date, check_in_time, check_out_date, check_out_time, id_status_check, total_harga);
+		Transaksi transaksi = new Transaksi(check_in_date, check_in_time, check_out_date, check_out_time, totalHarga);
+//		Transaksi newtransaksi = transaksiRepo.save(transaksi);
+//		return newtransaksi;
+		
+		Customer customer = custRepo.findOneByIdCustomer(idCustomer);
+		Kamar kamar = kamarRepo.findOneByIdKamar(idKamar);
+		StatusCheck statuscheck = statusCheckRepo.findOneByIdStatusCheck(idStatusCheck);
+		
+//		Customer customer = custServ.getCustomerByIds(id_customer);
+//		Room room = roomServ.getRoomById(id_room);
+		
+		
+//		Optional<Customer> customer = custRepo.findById(id_customer);
+//		Optional<Room> room = roomRepo.findById(id_room);
+		
+//		ResponseEntity<Customer> customer = custRest.getCustomerById(id_customer);
+		transaksi.setCustomer(customer);
+		transaksi.setKamar(kamar);
+		transaksi.setStatusCheck(statuscheck);
+		
+		return transaksiRepo.save(transaksi);
+	}
+	
+	public List<StatusCheck> getAllStatusCheck(){
+		List<StatusCheck> statusCheck = statusCheckRepo.findAll();
+		return statusCheck;
+	}
+	
+}

@@ -1,0 +1,72 @@
+package com.mini.project.hotel.services;
+
+import java.text.ParseException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mini.project.hotel.model.Customer;
+import com.mini.project.hotel.model.Kamar;
+import com.mini.project.hotel.model.StatusKamar;
+import com.mini.project.hotel.model.TipeKamar;
+import com.mini.project.hotel.model.Transaksi;
+import com.mini.project.hotel.repository.KamarRepository;
+import com.mini.project.hotel.repository.StatusKamarRepository;
+import com.mini.project.hotel.repository.TipeKamarRepository;
+
+@Service
+public class KamarService {
+	
+	@Autowired
+	KamarRepository kamarRepo;
+	
+	@Autowired
+	TipeKamarRepository tipeKamarRepo;
+	
+	@Autowired
+	StatusKamarRepository statusKamarRepo;
+	
+	// -- Kamar --------------------------------------------
+	public List<Kamar> getAllKamar(){
+		List<Kamar> kamar = kamarRepo.findAll();
+		return kamar;
+	}
+	
+	public Kamar getKamarByIds(int id_room){
+		Kamar kamar = kamarRepo.findOneByIdKamar(id_room);
+		return kamar;
+	}
+	// ------------------------------------------------------
+	
+	// -- Tipe Kamar ----------------------------------------
+	public List<TipeKamar> getAllTipeKamar(){
+		List<TipeKamar> tipekamar = tipeKamarRepo.findAll();
+		return tipekamar;
+	}
+	// ------------------------------------------------------
+	
+	// -- Status Kamar --------------------------------------
+	public List<StatusKamar> getAllStatusKamar(){
+		List<StatusKamar> statuskamar = statusKamarRepo.findAll();
+		return statuskamar;
+	}
+	// ------------------------------------------------------
+	
+	
+	public Kamar addKamar(int idKamar, String noKamar, int idType, int idStatus) throws ParseException {
+		
+//		Transaksi transaksi = new Transaksi(check_in_date, check_in_time, check_out_date, check_out_time, id_status_check, total_harga);
+		
+		Kamar kamar = new Kamar(noKamar);
+		
+		TipeKamar tipeKamar = tipeKamarRepo.findOneByIdType(idType);
+		StatusKamar statusKamar = statusKamarRepo.findOneByIdStatus(idStatus);
+		
+		kamar.setTipeKamar(tipeKamar);
+		kamar.setStatusKamar(statusKamar);
+		
+		return kamarRepo.save(kamar);
+	}
+	
+}

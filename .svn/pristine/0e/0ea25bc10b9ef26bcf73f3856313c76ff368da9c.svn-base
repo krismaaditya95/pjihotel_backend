@@ -1,0 +1,109 @@
+package com.mini.project.hotel.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "customer")
+public class Customer implements Serializable{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column(name = "id_customer", nullable = false)
+	private int idCustomer;
+
+	@Column(name = "no_identitas", nullable = false)
+	private int noIdentitas;
+	
+	//@JoinColumn(name = "nama_customer", referencedColumnName = "nama_customer")
+	// dipakai untuk mengetahui transaksi apa saja
+	// yang dimiliki customer ini.
+//	@OneToMany(cascade = CascadeType.ALL)	
+//	public Set<Transaksi> trans;
+//	
+//	public Set<Transaksi> getTrans() {
+//		return trans;
+//	}
+//
+//	public void setTrans(Set<Transaksi> trans) {
+//		this.trans = trans;
+//	}
+	
+	@Column(name = "nama_customer", nullable = false)
+	private String namaCustomer;
+	
+	@Column(name = "no_telp", nullable = false)
+	private String noTelp;
+	
+	@Column(name = "email", nullable = false)
+	private String email;
+	
+	@Column(name = "alamat", nullable = false)
+	private String alamat;
+	
+	public Customer() {
+		
+	}
+	
+	public Customer(int no_identitas, String nama_customer, String no_telp, String email, String alamat) {
+		this.noIdentitas = no_identitas;
+		this.namaCustomer = nama_customer;
+		this.noTelp = no_telp;
+		this.email = email;
+		this.alamat = alamat;
+	}
+	
+	public int getIdCustomer() {
+		return idCustomer;
+	}
+
+	public void setIdCustomer(int idCustomer) {
+		this.idCustomer = idCustomer;
+	}
+
+	public int getNoIdentitas() {
+		return noIdentitas;
+	}
+
+	public void setNoIdentitas(int noIdentitas) {
+		this.noIdentitas = noIdentitas;
+	}
+
+	public String getNamaCustomer() {
+		return namaCustomer;
+	}
+
+	public void setNamaCustomer(String namaCustomer) {
+		this.namaCustomer = namaCustomer;
+	}
+
+	public String getNoTelp() {
+		return noTelp;
+	}
+
+	public void setNoTelp(String noTelp) {
+		this.noTelp = noTelp;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAlamat() {
+		return alamat;
+	}
+
+	public void setAlamat(String alamat) {
+		this.alamat = alamat;
+	}
+}

@@ -1,0 +1,116 @@
+package com.mini.project.hotel.model;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.Set;
+
+@Entity
+@Table(name = "customer")
+public class Customer {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_customer", nullable = false)
+	public int id_customer;
+	
+	@Column(name = "no_identitas", nullable = false)
+	public int no_identitas;
+	
+	//@JoinColumn(name = "nama_customer", referencedColumnName = "nama_customer")
+	@OneToMany(cascade = CascadeType.ALL)	
+	public Set<Transaksi> trans;
+	
+	public Set<Transaksi> getTrans() {
+		return trans;
+	}
+
+	public void setTrans(Set<Transaksi> trans) {
+		this.trans = trans;
+	}
+	
+	@Column(name = "nama_customer", nullable = false)
+	public String nama_customer;
+	
+	@Column(name = "no_telp", nullable = false)
+	public String no_telp;
+	
+	@Column(name = "email", nullable = false)
+	public String email;
+	
+	@Column(name = "alamat", nullable = false)
+	public String alamat;
+	
+	public Customer() {
+		
+	}
+	
+	public Customer(int no_identitas, String nama_customer, String no_telp, String email, String alamat) {
+		this.no_identitas = no_identitas;
+		this.nama_customer = nama_customer;
+		this.no_telp = no_telp;
+		this.email = email;
+		this.alamat = alamat;
+	}
+	
+	
+	// ==========================================
+	public int getId_customer() {
+		return id_customer;
+	}
+	public void setId_customer(int id_customer) {
+		this.id_customer = id_customer;
+	}
+	
+	// ==========================================
+	
+	public int getNo_identitas() {
+		return no_identitas;
+	}
+	public void setNo_identitas(int no_identitas) {
+		this.no_identitas = no_identitas;
+	}
+	
+	// ==========================================
+	
+	public String getNama_customer() {
+		return nama_customer;
+	}
+	public void setNama_customer(String nama_customer) {
+		this.nama_customer = nama_customer;
+	}
+	
+	// ==========================================
+	
+	public String getNo_telp() {
+		return no_telp;
+	}
+	public void setNo_telp(String no_telp) {
+		this.no_telp = no_telp;
+	}
+	
+	// ==========================================
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	// ==========================================
+	public String getAlamat() {
+		return alamat;
+	}
+	public void setAlamat(String alamat) {
+		this.alamat = alamat;
+	}
+	
+	// ==========================================
+}

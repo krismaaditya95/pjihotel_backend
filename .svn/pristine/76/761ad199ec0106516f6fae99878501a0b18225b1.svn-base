@@ -1,0 +1,42 @@
+package com.mini.project.hotel.services;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mini.project.hotel.controller.TransaksiRESTController;
+import com.mini.project.hotel.model.Transaksi;
+
+@Service
+public class TransaksiService {
+	@Autowired
+	TransaksiRESTController rest;
+	
+	//private static List<Transaksi> transactions = new ArrayList<Transaksi>();
+	
+	DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+	DateFormat time = new SimpleDateFormat("HH:mm");
+	
+	public List<Transaksi> viewTransaksi(){
+		List<Transaksi> transaksis = rest.lihatSemuaTransaksi();
+		return transaksis;
+	}
+	
+	public Transaksi addTransaksi(Integer id_customer, int id_room, String check_in_date, String check_in_time, String check_out_date, String check_out_time, int id_status_check, int total_harga) throws ParseException {
+		//Transaksi newtransaksi = new Transaksi(id_customer, id_room, check_in_date, check_in_time, check_out_date, check_out_time, id_status_check, total_harga);
+		Transaksi transaksi = new Transaksi(id_customer, id_room, check_in_date, check_in_time, check_out_date, check_out_time, id_status_check, total_harga);
+		Transaksi newtransaksi = rest.createCustomer(transaksi);
+		return newtransaksi;
+	}
+	
+//	public Transaksi addTransaksi(int id_customer, int id_room, DateFormat check_in_date, DateFormat check_in_time, DateFormat check_out_date, DateFormat check_out_time, int id_status_check, int total_harga) {
+//		//Transaksi newtransaksi = new Transaksi(id_customer, id_room, check_in_date, check_in_time, check_out_date, check_out_time, id_status_check, total_harga);
+//		Transaksi transaksi = new Transaksi(id_customer, id_room, check_in_date, check_in_time, check_out_date, check_out_time, id_status_check, total_harga);
+//		Transaksi newtransaksi = rest.createCustomer(transaksi);
+//		return newtransaksi;
+//	}
+}

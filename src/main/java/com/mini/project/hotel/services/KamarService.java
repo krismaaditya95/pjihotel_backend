@@ -47,32 +47,32 @@ public class KamarService {
 		return kamar;
 	}
 	
-	public Kamar addKamar(String noKamar, int idTipeKamar, int idStatusKamar){
-		Kamar kamar = new Kamar(noKamar);
-		TipeKamar tipeKamar = tipeKamarRepo.findByIdTipeKamar(idTipeKamar);
-		StatusKamar statusKamar = statusKamarRepo.findByIdStatusKamar(idStatusKamar);
-		
-		kamar.setTipeKamar(tipeKamar);
-		kamar.setStatusKamar(statusKamar);
-		
-		return kamarRepo.save(kamar);
-	}
+//	public Kamar addKamar(String noKamar, int idTipeKamar, int idStatusKamar){
+//		Kamar kamar = new Kamar(noKamar);
+//		TipeKamar tipeKamar = tipeKamarRepo.findByIdTipeKamar(idTipeKamar);
+//		StatusKamar statusKamar = statusKamarRepo.findByIdStatusKamar(idStatusKamar);
+//		
+//		kamar.setTipeKamar(tipeKamar);
+//		kamar.setStatusKamar(statusKamar);
+//		
+//		return kamarRepo.save(kamar);
+//	}
 	
-	public String editKamarById(int idKamar, String noKamar, int idTipeKamar, int idStatusKamar) throws ParseException {
-
-		Kamar kamar = kamarRepo.findByIdKamar(idKamar);
-		TipeKamar tipeKamar = tipeKamarRepo.findByIdTipeKamar(idTipeKamar);
-		StatusKamar statusKamar = statusKamarRepo.findByIdStatusKamar(idStatusKamar);
-		
-		kamar.setNoKamar(noKamar);
-		kamar.setTipeKamar(tipeKamar);
-		kamar.setStatusKamar(statusKamar);
-		
-		if(kamarRepo.save(kamar) == null) {
-			return "Gagal Update data kamar";
-		}
-		return "Berhasil update data kamar";
-	}
+//	public String editKamarById(int idKamar, String noKamar, int idTipeKamar, int idStatusKamar) throws ParseException {
+//
+//		Kamar kamar = kamarRepo.findByIdKamar(idKamar);
+//		TipeKamar tipeKamar = tipeKamarRepo.findByIdTipeKamar(idTipeKamar);
+//		StatusKamar statusKamar = statusKamarRepo.findByIdStatusKamar(idStatusKamar);
+//		
+//		kamar.setNoKamar(noKamar);
+//		kamar.setTipeKamar(tipeKamar);
+//		kamar.setStatusKamar(statusKamar);
+//		
+//		if(kamarRepo.save(kamar) == null) {
+//			return "Gagal Update data kamar";
+//		}
+//		return "Berhasil update data kamar";
+//	}
 	
 	public void deleteKamarById(int idKamar) {
 		kamarRepo.deleteById(idKamar);

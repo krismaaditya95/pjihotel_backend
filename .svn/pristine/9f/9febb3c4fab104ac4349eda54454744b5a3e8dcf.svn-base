@@ -1,0 +1,60 @@
+package com.mini.project.hotel.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "room")
+public class Room {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idRoom;
+
+	@Column(name = "no_room", nullable = false)
+	private String noRoom;
+	
+	@Column(name = "id_type", nullable = false)
+	private int idType;
+	
+	@Column(name = "id_status", nullable = false)
+	private int idStatus;
+
+	public int getIdRoom() {
+		return idRoom;
+	}
+
+	public void setIdRoom(int idRoom) {
+		this.idRoom = idRoom;
+	}
+
+	public String getNoRoom() {
+		return noRoom;
+	}
+
+	public void setNoRoom(String noRoom) {
+		this.noRoom = noRoom;
+	}
+
+	public int getIdType() {
+		return idType;
+	}
+
+	public void setIdType(int idType) {
+		this.idType = idType;
+	}
+
+	public int getIdStatus() {
+		return idStatus;
+	}
+
+	public void setIdStatus(int idStatus) {
+		this.idStatus = idStatus;
+	}
+	
+	
+}

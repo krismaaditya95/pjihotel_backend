@@ -1,0 +1,54 @@
+package com.mini.project.hotel.controller;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mini.project.hotel.exception.ResourceNotFoundException;
+import com.mini.project.hotel.model.Transaksi;
+import com.mini.project.hotel.repository.CustomerRepository;
+import com.mini.project.hotel.repository.TransaksiRepository;
+
+@RestController
+@RequestMapping("/pjihotel/api")
+public class TransaksiRESTController {
+	
+	@Autowired
+	private TransaksiRepository transaksiRepo;
+	
+	@Autowired
+	private CustomerRepository custRepo;
+	
+	@GetMapping("/transaksi")
+	public List<Transaksi> lihatSemuaTransaksi(){
+		return transaksiRepo.findAll();
+	}
+	
+	@GetMapping("/transaksi/{id_transaksi}")
+	public ResponseEntity<Transaksi> getTransaksiById(@PathVariable(value = "id_transaksi") int id_transaksi)
+	throws ResourceNotFoundException{
+		Transaksi transc = transaksiRepo.findById(id_transaksi).orElseThrow(() -> new ResourceNotFoundException("Transaksi dengan id transaksi :"+ id_transaksi + " tidak ditemukan"));
+		return ResponseEntity.ok().body(transc);
+	}
+	
+	@PostMapping("/transaksi/catat")
+	public Transaksi createCustomer(@Valid @RequestBody Transaksi transaksi) {
+		return transaksiRepo.save(transaksi);
+	}
+
+//	@GetMapping("/lihat")
+//	public Page<Transaksi> lihatSemuaTransaksi(Pageable pageable){
+//		return transaksiRepo.findAll(pageable);
+//	}
+	
+	
+}

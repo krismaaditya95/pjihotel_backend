@@ -1,0 +1,7 @@
+package com.mini.project.hotel.model;
+
+public class RoomType {
+	public int id_type;
+	public String type_name;
+	public int harga;
+}

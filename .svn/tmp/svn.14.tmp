@@ -1,0 +1,13 @@
+  </body>
+</html>
+
+<script>
+	var url = "http://localhost:7080/pjihotel/api/v1/getAllTransaksi";
+	var app = angular.module('transaksi', []);
+	app.controller('transaksiCtrl', function($scope, $http){
+		$http.get(url).then(function(response){
+			// $scope.transaksiData = response.data;
+			$scope.transaksis = response.data;
+		});
+	});
+</script>

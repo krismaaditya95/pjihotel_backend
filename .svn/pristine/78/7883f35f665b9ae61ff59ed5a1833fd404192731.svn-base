@@ -1,0 +1,39 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>PJI Hotel - Daftar Transaksi</title>
+  </head>
+  <body>
+    <h4>Ini adalah halaman transaksi</h4>
+    ${transactions}
+
+    <c:forEach items="${transactions}" var="transaksi">
+      <h5>${transaksi.id_transaksi}</h5>
+      <h5>${transaksi.id_customer}</h5>
+      <h5>${transaksi.customer.nama_customer}</h5>
+      <h5>${transaksi.id_room}</h5>
+      <h5>${transaksi.check_in_date}</h5>
+      <h5>${transaksi.check_in_time}</h5>
+      <h5>${transaksi.check_out_date}</h5>
+      <h5>${transaksi.check_out_time}</h5>
+      <h5>${transaksi.id_status_check}</h5>
+      <h5>${transaksi.total_harga}</h5>
+      <hr>
+    </c:forEach>
+
+  </body>
+</html>
+
+<%--
+4 inputan :
+produk
+diskon dlm persen
+subtotal
+total
+
+button hitung
+
+diskon hanya berlaku kalau subtotal harga >= 100rb
+ --%>

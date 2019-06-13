@@ -1,0 +1,53 @@
+package com.mini.project.hotel.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mini.project.hotel.model.Pengguna;
+import com.mini.project.hotel.repository.PenggunaRepository;
+
+@Service
+public class UserService {
+	
+	@Autowired
+	PenggunaRepository userRepo;
+	
+	public List<Pengguna> getAllPengguna(){
+		List<Pengguna> users = userRepo.findAll();
+		return users;
+	}
+	
+	public List<Pengguna> getPenggunaByIds(Integer userId){
+		List<Pengguna> pengguna = userRepo.findByUserId(userId);
+		return pengguna;
+	}
+	
+	public Pengguna getPenggunaById(Integer userId) {
+		Pengguna pengguna = userRepo.findOneByUserId(userId);
+		return pengguna;
+	}
+	
+	public Pengguna getPenggunaByUserName(String username) {
+		Pengguna pengguna = userRepo.findByUserName(username);
+		return pengguna;
+	}
+	
+	public Boolean login(String username, String userpass) {
+//		Pengguna pengguna = userRepo.findByUserNameAndUserPass(username, userpass);
+		
+//		boolean found = false;
+		Pengguna pengguna = userRepo.findByUserName(username);
+		String password = pengguna.getUserPass();
+		
+		if(userpass == password) {
+			return true;
+		}
+		
+		return false;
+//		List<Pengguna> penggunas = userRepo.findByUserNameAndUserPass(username, userpass);
+//		Long found = userRepo.count(pengguna);
+//		return pengguna;
+	}
+}

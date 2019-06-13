@@ -1,0 +1,9 @@
+package com.mini.project.hotel.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.mini.project.hotel.model.RoomType;
+
+public interface RoomTypeRepository extends JpaRepository<RoomType, Integer>{
+	
+}

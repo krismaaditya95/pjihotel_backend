@@ -1,0 +1,40 @@
+package com.mini.project.hotel.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "statuskamar")
+public class StatusKamar {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idStatus;
+	
+	@Column(name = "status_name", nullable = false)
+	private String statusName;
+
+	public int getIdStatus() {
+		return idStatus;
+	}
+
+	public void setIdStatus(int idStatus) {
+		this.idStatus = idStatus;
+	}
+
+	public String getStatusName() {
+		return statusName;
+	}
+
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
+	}
+	
+	
+	
+	
+}

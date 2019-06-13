@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Tambah tamu</title>
+  </head>
+  <body>
+    <h4>Tambah Tamu</h4>
+    <form class="tambahtamuform" method="post">
+      <hr>
+      No.Identitas : <input type="number" name="no_identitas" placeholder="Nomor Identitas">
+      <hr>
+      Nama Tamu : <input type="text" name="nama_customer" placeholder="Nama Tamu">
+      <hr>
+      Nomor Telepon : <input type="number" name="no_telp" placeholder="Nomor telepon">
+      <hr>
+      E-mail : <input type="email" name="email" placeholder="user@mail..">
+      <hr>
+      Nama Tamu : <input type="text" name="alamat" placeholder="Alamat">
+
+      <input type="submit" value="TAMBAH TAMU"></input>
+    </form>
+  </body>
+</html>

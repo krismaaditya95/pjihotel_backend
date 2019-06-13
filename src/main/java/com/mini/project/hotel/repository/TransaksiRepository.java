@@ -1,6 +1,7 @@
 package com.mini.project.hotel.repository;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,5 +22,5 @@ public interface TransaksiRepository extends JpaRepository<Transaksi, Integer>{
 	
 	Transaksi findByCheckInDate(Date checkInDate);
 	
-	Transaksi findByIdStatusCheck(Integer id);
+	List<Transaksi> findByIdStatusCheck(Integer id);
 }

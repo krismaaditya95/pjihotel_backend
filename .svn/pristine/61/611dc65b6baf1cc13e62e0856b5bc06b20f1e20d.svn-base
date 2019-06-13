@@ -1,0 +1,55 @@
+package com.mini.project.hotel.controller;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mini.project.hotel.exception.ResourceNotFoundException;
+// IMPORT model customer.java dan 
+// interface customerrepository
+import com.mini.project.hotel.model.Customer;
+import com.mini.project.hotel.model.Transaksi;
+import com.mini.project.hotel.repository.CustomerRepository;
+import com.mini.project.hotel.repository.TransaksiRepository;
+
+@RestController
+@RequestMapping("/pjihotel/api")
+public class CustomerRESTController {
+	@Autowired
+	private CustomerRepository custRepo;
+	
+	@GetMapping("/")
+	public String login() {
+		return "Halaman awal dari rest controller";
+	}
+	
+	@GetMapping("/customers")
+	public List<Customer> getAllCustomers(){
+		return custRepo.findAll();
+	}
+	
+	// Get customer by id	
+	@GetMapping("/customers/{id_customer}")
+	public ResponseEntity<Customer> getCustomerById(@PathVariable(value = "id_customer") int id_customer)
+	throws ResourceNotFoundException{
+//		int intidcust = Integer (id_customer);
+		
+		Customer customer = custRepo.findById(id_customer).orElseThrow(() -> new ResourceNotFoundException("Customer dengan id : "+ id_customer +" tidak ditemukan"));
+		return ResponseEntity.ok().body(customer);
+	}
+	
+	@PostMapping("/customers")
+	public Customer createCustomer(@Valid @RequestBody Customer customer) {
+		return custRepo.save(customer);
+	}
+	
+}

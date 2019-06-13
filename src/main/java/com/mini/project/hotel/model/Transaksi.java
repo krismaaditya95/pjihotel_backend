@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
@@ -17,13 +18,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
 
 @Entity
 @Table(name = "transaksi")
 public class Transaksi{
-	
 	// -- Primary Key --------------------------
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -87,6 +89,17 @@ public class Transaksi{
 
 	// -- Check In Date ------------------------
 	@Column(name = "check_in_date", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+//	private LocalDate checkInDate;
+//	
+//	public LocalDate getCheckInDate() {
+//		return checkInDate;
+//	}
+//
+//	public void setCheckInDate(LocalDate checkInDate) {
+//		this.checkInDate = checkInDate;
+//	}
+	
 	private Date checkInDate;
 	
 	public Date getCheckInDate() {
@@ -96,20 +109,57 @@ public class Transaksi{
 	public void setCheckInDate(Date checkInDate) {
 		this.checkInDate = checkInDate;
 	}
+	
+//	private String checkInDate;
+//	
+//	public String getCheckInDate() {
+//		return checkInDate;
+//	}
+//
+//	public void setCheckInDate(String checkInDate) {
+//		this.checkInDate = checkInDate;
+//	}
 
 	// -- Check In Time ------------------------
 	@Column(name = "check_in_time", nullable = false)
-	private Date checkInTime;
+//	private String checkInTime;
+//	
+//	public String getCheckInTime() {
+//		return checkInTime;
+//	}
+//	public void setCheckInTime(String checkInTime) {
+//		this.checkInTime = checkInTime;
+//	}
+	private LocalTime checkInTime;
 	
-	public Date getCheckInTime() {
+	public LocalTime getCheckInTime() {
 		return checkInTime;
 	}
-	public void setCheckInTime(Date checkInTime) {
+	public void setCheckInTime(LocalTime checkInTime) {
 		this.checkInTime = checkInTime;
 	}
+
+//	private Date checkInTime;
+//	
+//	public Date getCheckInTime() {
+//		return checkInTime;
+//	}
+//	public void setCheckInTime(Date checkInTime) {
+//		this.checkInTime = checkInTime;
+//	}
 	
 	// -- Check Out Date ------------------------
 	@Column(name = "check_out_date", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+//	private LocalDate checkOutDate;
+//	
+//	public LocalDate getCheckOutDate() {
+//		return checkOutDate;
+//	}
+//	public void setCheckOutDate(LocalDate checkOutDate) {
+//		this.checkOutDate = checkOutDate;
+//	}
+	
 	private Date checkOutDate;
 	
 	public Date getCheckOutDate() {
@@ -119,16 +169,41 @@ public class Transaksi{
 		this.checkOutDate = checkOutDate;
 	}
 	
+//	private String checkOutDate;
+//	
+//	public String getCheckOutDate() {
+//		return checkOutDate;
+//	}
+//	public void setCheckOutDate(String checkOutDate) {
+//		this.checkOutDate = checkOutDate;
+//	}
+	
 	// -- Check Out Time ------------------------
 	@Column(name = "check_out_time", nullable = false)
-	private Date checkOutTime;
+//	private String checkOutTime;
+//	
+//	public String getCheckOutTime() {
+//		return checkOutTime;
+//	}
+//	public void setCheckOutTime(String checkOutTime) {
+//		this.checkOutTime = checkOutTime;
+//	}
+	private LocalTime checkOutTime;
 	
-	public Date getCheckOutTime() {
+	public LocalTime getCheckOutTime() {
 		return checkOutTime;
 	}
-	public void setCheckOutTime(Date checkOutTime) {
+	public void setCheckOutTime(LocalTime checkOutTime) {
 		this.checkOutTime = checkOutTime;
 	}
+//	private Date checkOutTime;
+//	
+//	public Date getCheckOutTime() {
+//		return checkOutTime;
+//	}
+//	public void setCheckOutTime(Date checkOutTime) {
+//		this.checkOutTime = checkOutTime;
+//	}
 	
 	// -- Foreign Key id_status_check -----------------
 	@Column(nullable = false, insertable = false, updatable = false)
@@ -167,7 +242,17 @@ public class Transaksi{
 		this.totalHarga = totalHarga;
 	}
 	
+	@Column(name = "kode_transaksi", nullable = false)
+	private String kodeTransaksi;
 	
+	public String getKodeTransaksi() {
+		return kodeTransaksi;
+	}
+
+	public void setKodeTransaksi(String kodeTransaksi) {
+		this.kodeTransaksi = kodeTransaksi;
+	}
+
 	// -- Constructors -------------------------
 	public Transaksi() {
 		
@@ -184,9 +269,9 @@ public class Transaksi{
 		Date cit_format_parsed = time_format.parse(check_in_time);
 		Date cot_format_parsed = time_format.parse(check_out_time);
 		
-		this.checkInDate = cid_format_parsed;
-		this.checkInTime = cit_format_parsed;
-		this.checkOutDate = cod_format_parsed;
-		this.checkOutTime = cot_format_parsed;
+//		this.checkInDate = cid_format_parsed;
+//		this.checkInTime = cit_format_parsed;
+//		this.checkOutDate = cod_format_parsed;
+//		this.checkOutTime = cot_format_parsed;
 	}
 }

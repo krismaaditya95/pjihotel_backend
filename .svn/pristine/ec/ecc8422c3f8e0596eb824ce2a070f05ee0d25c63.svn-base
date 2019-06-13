@@ -1,0 +1,6 @@
+package com.mini.project.hotel.model;
+
+public class StatusCheck {
+	public int id_status_check;
+	public String nama_status;
+}

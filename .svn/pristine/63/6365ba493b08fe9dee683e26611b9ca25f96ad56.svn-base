@@ -1,0 +1,10 @@
+package com.mini.project.hotel.model;
+
+public class Room {
+	public int id_room;
+	public String no_room;
+	public int id_type;
+	public int id_status;
+	
+	
+}

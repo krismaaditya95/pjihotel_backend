@@ -1,0 +1,23 @@
+package com.mini.project.hotel.services;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.mini.project.hotel.controller.TransaksiRESTController;
+import com.mini.project.hotel.model.Transaksi;
+
+@Service
+public class TransaksiService {
+	TransaksiRESTController rest;
+	
+	private static List<Transaksi> transactions = new ArrayList<Transaksi>();
+	
+	public List<Transaksi> viewTransaksi(){
+		//List<Transaksi> transaksis = new ArrayList<Transaksi>();
+		//transaksis = rest.lihatSemuaTransaksi();
+		List<Transaksi> transaksis = rest.lihatSemuaTransaksi();
+		return transaksis;
+	}
+}
